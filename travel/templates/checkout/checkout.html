@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+
+<!-- PAGE TITLE
+    ================================================== -->
+    <header class="py-8 py-md-10" style="background-image: none;">
+        <div class="container text-center py-xl-2">
+            <h1 class="display-4 fw-semi-bold mb-0">Shop Checkout</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                    <li class="breadcrumb-item">
+                        <a class="text-gray-800" href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                        Shop Checkout
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <!-- Img -->
+        <img class="d-none img-fluid" src="...html" alt="...">
+    </header>
+
+ <!-- SHOP CHECKOUT
+    ================================================== -->
+    <div class="container pb-6 pb-xl-10">
+        <form method="post" class="checkout woocommerce-checkout" action="?action=create_payment" novalidate="">
+            {% csrf_token %}
+            <div class="col2-set" id="customer_details">
+                <div class="col-1">
+                    <div class="woocommerce-billing-fields">
+                        <h3>Billing details</h3>
+                        <div class="woocommerce-billing-fields__field-wrapper">
+                            <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field" data-priority="10">
+                                <label for="billing_first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="first_name" id="billing_first_name" placeholder="" value="{{user.first_name}}" autocomplete="given-name" autofocus="autofocus">
+                            </p>
+                            <p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
+                                <label for="billing_last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="last_name" id="billing_last_name" placeholder="" value="{{user.last_name}}" autocomplete="family-name">
+                            </p>
+
+                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated" id="billing_country_field" data-priority="40">
+                                <label for="billing_country" class="">Country <abbr class="required" title="required">*</abbr></label>
+                                <select name="country" id="billing_country" class="country_to_state country_select  select2-hidden-accessible" autocomplete="country" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select a country…</option>
+                                    <option value="AX">Åland Islands</option>
+                                    <option value="AF">Afghanistan</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                </select>
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
+                                <label for="billing_address_1" class="">Street address <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="address_1" id="billing_address_1" placeholder="House number and street name" value="" autocomplete="address-line1">
+                            </p>
+                            <p class="form-row form-row-wide address-field" id="billing_address_2_field" data-priority="60">
+                                <input type="text" class="input-text " name="address_2" id="billing_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="" autocomplete="address-line2">
+                            </p>
+<!--                             <p class="form-row form-row-wide address-field" id="billing_address_2_field" data-priority="60">-->
+<!--                                <input type="text" class="input-text " name="address_2" id="billing_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="" autocomplete="address-line2">-->
+<!--                            </p>-->
+                            <p class="form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
+                                <label for="billing_city" class="">Town / City <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="city" id="billing_city" placeholder="" value="" autocomplete="address-level2">
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="80" data-o_class="form-row form-row-wide address-field validate-state">
+                                <label for="billing_state" class="">State</label>
+                                <input type="text" class="input-text " value="" placeholder="" name="state" id="billing_state" autocomplete="address-level1">
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-postcode validate-required" id="billing_postcode_field" data-priority="90" data-o_class="form-row form-row-wide address-field validate-required validate-postcode">
+                                <label for="billing_postcode" class="">Postcode <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="postcode" id="billing_postcode" placeholder="" value="" autocomplete="postal-code">
+                            </p>
+                            <p class="form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="100">
+                                <label for="billing_phone" class="">Phone <abbr class="required" title="required">*</abbr></label>
+                                <input type="tel" class="input-text " name="phone" id="billing_phone" placeholder="" value="" autocomplete="tel">
+                            </p>
+                            <p class="form-row form-row-last validate-required validate-email" id="billing_email_field" data-priority="110">
+                                <label for="billing_email" class="">Email address <abbr class="required" title="required">*</abbr></label>
+                                <input type="email" class="input-text " name="email" id="billing_email" placeholder="{{user.email}}" value="" autocomplete="email">
+                            </p>
+                            <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_gents_field" data-priority="10">
+                                <label for="billing_first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="first_name" id="billing_gents" placeholder="" value="{{user.first_name}}" autocomplete="given-name" autofocus="autofocus">
+                            </p>
+                            <p class="form-row form-row-last validate-required" id="billing_ladies_field" data-priority="20">
+                                <label for="billing_last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                <input type="text" class="input-text " name="last_name" id="billing_ladies" placeholder="" value="{{user.last_name}}" autocomplete="family-name">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="woocommerce-shipping-fields"></div>
+                    <div class="woocommerce-additional-fields">
+                        <h3>Additional information</h3>
+                        <div class="woocommerce-additional-fields__field-wrapper">
+                            <p class="form-row notes" id="order_comments_field" data-priority=""><label for="order_comments" class="">Order notes</label><textarea name="order_comments" class="input-text " id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery." rows="7" cols="5"></textarea></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="order_review" class="woocommerce-checkout-review-order">
+                <div class="woocommerce-checkout-review-order-inner">
+                    <h3 id="order_review_heading">Your order</h3>
+                    <table class="shop_table woocommerce-checkout-review-order-table">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Course</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+
+
+                                </td>
+                                <td class="product-total">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">₹</span>
+
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th>Discount</th>
+                                <td><span class="woocommerce-Price-amount amount">{{course.discount}}<span class="woocommerce-Price-currencySymbol">%</span></span></td>
+                            </tr>
+
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span></span></strong> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="payment" class="woocommerce-checkout-payment">
+
+                    <div class="form-row place-order">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            PLACE ORDER
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- CALL ACTION
+    ================================================== -->
+    <section class="py-6 py-md-11 border-top border-bottom" data-jarallax data-speed=".8" style="background-image: url(assets/img/illustrations/illustration-1.jpg)">
+        <div class="container text-center py-xl-4" data-aos="fade-up">
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    <h1 class="text-capitalize">Subscribe our newsletter</h1>
+                    <p class="text-capitalize font-size-lg mb-md-6 mb-4">Your download should start automatically, if not Click here. Should I give up, huh?.</p>
+                    <div class="mx-md-8">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary btn-sm-wide" type="button" id="button-addon2">Subscribe</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
