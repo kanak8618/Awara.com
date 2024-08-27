@@ -149,8 +149,8 @@ LOGOUT_REDIRECT_URL = 'login'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'testmaster.523@gmail.com'
-EMAIL_HOST_PASSWORD = 'txye jsas qfvq gmsg'
+EMAIL_HOST_USER = 'Email'
+EMAIL_HOST_PASSWORD = 'Email Host Password'
 
 customColorPalette = [
     {"color": "hsl(4, 90%, 58%)", "label": "Red"},
